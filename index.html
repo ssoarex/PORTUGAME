@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10152f">
+  <title>PORTUGAME — Aprender, jogar e evoluir!</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Orbitron:wght@600;700;800&display=swap');
+    :root{--bg:#0b1024;--panel:#151d3b;--panel2:#1b2549;--line:#303d6c;--text:#f3f5ff;--muted:#aab4d8;--cyan:#54e5f2;--purple:#a78bfa;--gold:#ffd166;--green:#66e3a4;--red:#ff7b91}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 15% 0%,#24275b 0,transparent 38%),radial-gradient(ellipse at 90% 20%,#123d5c 0,transparent 30%),var(--bg);color:var(--text);font-family:Nunito,system-ui,sans-serif}
+    button,input{font:inherit}button{cursor:pointer;border:0} .app{max-width:1120px;margin:auto;padding:24px 18px 48px}
+    header{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:28px}.brand{display:flex;align-items:center;gap:12px}.logo{width:48px;height:48px;border-radius:15px;background:linear-gradient(135deg,var(--purple),var(--cyan));display:grid;place-items:center;color:#10152f;font-size:25px;box-shadow:0 0 28px #54e5f255}.brand-name{font:800 21px Orbitron,sans-serif;letter-spacing:1px}.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:1.5px;margin-top:4px}.top-tag{border:1px solid #46558a;color:var(--cyan);padding:8px 13px;border-radius:30px;font-size:12px;font-weight:900;letter-spacing:1px}
+    .hero{display:grid;grid-template-columns:1.3fr .7fr;gap:20px;margin-bottom:20px}.hero-main,.player-card,.panel,.world-card{background:linear-gradient(145deg,#192346ee,#111a35f2);border:1px solid var(--line);border-radius:22px;box-shadow:0 15px 40px #0003}.hero-main{padding:28px;position:relative;overflow:hidden}.hero-main:after{content:"✦";position:absolute;right:25px;top:18px;color:#54e5f244;font-size:100px}.eyebrow{color:var(--cyan);font-size:12px;font-weight:900;letter-spacing:2px;text-transform:uppercase}.hero h1{font:800 clamp(25px,4vw,38px) Orbitron,sans-serif;line-height:1.2;margin:12px 0}.hero h1 span{color:var(--cyan)}.hero p{color:var(--muted);max-width:590px;line-height:1.6;margin-bottom:20px}.primary{background:linear-gradient(100deg,#8b78ff,#4adce9);color:#0b1230;font-weight:900;padding:12px 20px;border-radius:12px;box-shadow:0 7px 22px #5bddeb30}.secondary{background:#27345e;color:var(--text);padding:11px 16px;border:1px solid #46558a;border-radius:12px;font-weight:800}.player-card{padding:22px;display:flex;flex-direction:column;justify-content:space-between}.player-top{display:flex;align-items:center;gap:13px}.avatar{width:58px;height:58px;border-radius:18px;background:#2a3768;display:grid;place-items:center;font-size:32px;border:1px solid #6070aa}.player-name{font-weight:900;font-size:18px}.muted{color:var(--muted);font-size:13px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:20px}.stat{background:#202c52;border-radius:13px;padding:11px 8px;text-align:center}.stat strong{display:block;font:800 19px Orbitron;color:var(--gold)}.stat span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.7px}.level-line{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin:17px 0 7px}.progress{height:9px;background:#303b62;border-radius:20px;overflow:hidden}.progress>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--cyan));border-radius:20px;transition:width .4s}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:30px 2px 14px}.section-head h2{font:700 19px Orbitron;margin:0}.section-head p{margin:5px 0 0;color:var(--muted);font-size:13px}.worlds{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.world-card{padding:19px;transition:.2s;cursor:pointer;position:relative;overflow:hidden}.world-card:hover{transform:translateY(-4px);border-color:var(--cyan);box-shadow:0 12px 35px #54e5f222}.world-icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;font-size:25px;background:#27345e;margin-bottom:13px}.world-card h3{margin:0 0 5px;font-size:17px}.world-card p{margin:0;color:var(--muted);font-size:12px;line-height:1.5;min-height:36px}.world-foot{display:flex;justify-content:space-between;align-items:center;margin-top:17px;font-size:11px;color:var(--muted)}.pill{border:1px solid #52618f;border-radius:30px;padding:5px 9px;color:var(--cyan);font-weight:800}
+    .lower{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:18px}.panel{padding:20px}.panel h3{margin:0 0 14px;font:700 15px Orbitron}.skill{margin:12px 0}.skill-top{display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px}.skill .progress{height:7px}.empty{color:var(--muted);font-size:13px;line-height:1.5}.achievement{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #2a365d}.achievement:last-child{border:0}.medal{width:38px;height:38px;border-radius:12px;background:#29365f;display:grid;place-items:center;font-size:20px}.achievement strong{display:block;font-size:13px}.achievement small{color:var(--muted)}
+    .modal{position:fixed;inset:0;background:#050817dd;display:none;place-items:center;padding:18px;z-index:10;backdrop-filter:blur(7px)}.modal.show{display:grid}.dialog{width:min(650px,100%);max-height:90vh;overflow:auto;background:#141d3b;border:1px solid #48588e;border-radius:22px;padding:24px;box-shadow:0 25px 80px #0009}.dialog-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.dialog h2{font:700 19px Orbitron;margin:0}.close{background:#29365e;color:white;border-radius:10px;width:36px;height:36px;font-size:20px}.question-meta{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin:20px 0 10px}.qtext{font-size:19px;line-height:1.5;font-weight:800;margin:12px 0 18px}.answers{display:grid;gap:10px}.answer{width:100%;text-align:left;padding:13px 15px;border-radius:12px;background:#202c52;color:var(--text);border:1px solid #394a7b;font-weight:700;transition:.15s}.answer:hover:not(:disabled){border-color:var(--cyan);background:#26365f}.answer.correct{border-color:var(--green);background:#17483e}.answer.wrong{border-color:var(--red);background:#512a43}.feedback{display:none;margin-top:15px;padding:14px;border-radius:12px;background:#202c52;line-height:1.5;font-size:14px}.feedback.show{display:block}.feedback strong{display:block;margin-bottom:5px}.dialog-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:18px}.result{text-align:center;padding:15px}.result-icon{font-size:55px}.result h2{margin:8px 0}.result-score{font:800 34px Orbitron;color:var(--gold);margin:12px}.input-row{display:flex;gap:8px;margin-top:12px}.input-row input{min-width:0;flex:1;background:#0e1630;border:1px solid #40517f;border-radius:10px;color:white;padding:11px}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#e7fbff;color:#10152f;padding:12px 18px;border-radius:12px;font-weight:900;box-shadow:0 10px 30px #0006;display:none;z-index:20}.toast.show{display:block;animation:pop .2s}@keyframes pop{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}footer{text-align:center;color:#7582ac;font-size:11px;margin-top:30px}
+    @media(max-width:760px){.hero{grid-template-columns:1fr}.worlds{grid-template-columns:1fr}.lower{grid-template-columns:1fr}.hero-main{padding:23px}.section-head{align-items:start;flex-direction:column}.top-tag{font-size:10px}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="brand"><div class="logo">✦</div><div><div class="brand-name">PORTUGAME</div><small>APRENDER • JOGAR • EVOLUIR</small></div></div>
+    <div class="top-tag">✧ RPG DO CONHECIMENTO</div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-main">
+      <div class="eyebrow">Sua jornada começa agora</div>
+      <h1>Sua próxima conquista começa com uma <span>palavra!</span></h1>
+      <p>Explore mundos, enfrente desafios de Língua Portuguesa e evolua a cada resposta. Aqui, conhecimento também é poder.</p>
+      <button class="primary" onclick="openProfile()">✎ Personalizar jogador</button>
+    </div>
+    <aside class="player-card">
+      <div class="player-top"><div class="avatar" id="avatar">🧙</div><div><div class="player-name" id="playerName">Aventureiro</div><div class="muted" id="levelName">Aprendiz das Palavras</div></div></div>
+      <div>
+        <div class="stats">
+          <div class="stat"><strong id="xp">0</strong><span>XP</span></div>
+          <div class="stat"><strong id="coins">0</strong><span>Moedas</span></div>
+          <div class="stat"><strong id="played">0</strong><span>Partidas</span></div>
+        </div>
+        <div class="level-line"><span id="levelLabel">Nível 1</span><span id="nextXp">0 / 100 XP</span></div>
+        <div class="progress"><i id="levelBar"></i></div>
+      </div>
+    </aside>
+  </section>
+
+  <div class="section-head"><div><h2>ESCOLHA SEU MUNDO</h2><p>Cada missão fortalece uma habilidade diferente.</p></div><span class="pill">3 mundos • 15 questões</span></div>
+  <section class="worlds">
+    <article class="world-card" onclick="startMission('interpretacao')"><div class="world-icon">📜</div><h3>Reino da Interpretação</h3><p>Leia, compreenda e descubra as ideias por trás dos textos.</p><div class="world-foot"><span>5 questões • Leitura</span><span class="pill" id="done-interpretacao">JOGAR →</span></div></article>
+    <article class="world-card" onclick="startMission('gramatica')"><div class="world-icon">🏰</div><h3>Castelo da Gramática</h3><p>Domine regras, classes de palavras e pontuação.</p><div class="world-foot"><span>5 questões • Gramática</span><span class="pill" id="done-gramatica">JOGAR →</span></div></article>
+    <article class="world-card" onclick="startMission('palavras')"><div class="world-icon">🌲</div><h3>Floresta das Palavras</h3><p>Explore sentidos, sinônimos, antônimos e vocabulário.</p><div class="world-foot"><span>5 questões • Semântica</span><span class="pill" id="done-palavras">JOGAR →</span></div></article>
+  </section>
+
+  <section class="lower">
+    <div class="panel"><h3>📊 MAPA DE HABILIDADES</h3><div id="skills"><p class="empty">Complete missões para visualizar seu desempenho em cada competência.</p></div></div>
+    <div class="panel"><h3>🏅 CONQUISTAS</h3><div id="achievements"><p class="empty">Suas medalhas aparecerão aqui conforme você avançar.</p></div></div>
+  </section>
+  <footer>PORTUGAME • Protótipo educacional demonstrativo • Seu progresso fica salvo neste navegador.</footer>
+</div>
+
+<div class="modal" id="gameModal"><div class="dialog" id="gameDialog"></div></div>
+<div class="modal" id="profileModal"><div class="dialog">
+  <div class="dialog-head"><h2>SEU PERSONAGEM</h2><button class="close" onclick="closeProfile()">×</button></div>
+  <p class="muted">Escolha como deseja aparecer em sua jornada.</p>
+  <label class="muted" for="nameInput">Nome do jogador</label>
+  <div class="input-row"><input id="nameInput" maxlength="22" placeholder="Digite seu nome"></div>
+  <p class="muted">Escolha seu avatar</p>
+  <div id="avatarChoices" style="display:flex;gap:9px;flex-wrap:wrap"></div>
+  <div style="margin-top:20px"><button class="primary" onclick="saveProfile()">Salvar personagem</button></div>
+</div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const missions = {
+ interpretacao:{title:"Reino da Interpretação",skill:"Interpretação textual",questions:[
+  {q:"Leia: “Mesmo com o céu nublado, Marina saiu para caminhar, pois precisava organizar os pensamentos.” Qual motivo levou Marina a sair?",a:["A previsão de chuva","A necessidade de organizar os pensamentos","O desejo de encontrar amigos","A obrigação de fazer exercícios"],c:1,e:"O próprio texto informa que Marina saiu porque precisava organizar os pensamentos."},
+  {q:"Em um texto, a ideia principal corresponde:",a:["A uma informação sem importância","Ao assunto central desenvolvido","A qualquer palavra desconhecida","Somente à última frase"],c:1,e:"A ideia principal sintetiza aquilo que o texto apresenta como foco."},
+  {q:"Leia: “O relógio corria contra o estudante.” A expressão indica que:",a:["O relógio estava quebrado","O tempo parecia passar rapidamente e pressioná-lo","O estudante estava correndo","O relógio era muito caro"],c:1,e:"É uma expressão figurada que representa a pressão causada pela passagem do tempo."},
+  {q:"Quando um leitor conclui algo que não está escrito diretamente, mas é sugerido pelo texto, ele realiza uma:",a:["Cópia","Inferência","Rima","Enumeração"],c:1,e:"Inferir é construir uma conclusão com base em pistas e informações do texto."},
+  {q:"A finalidade predominante de uma campanha de vacinação é:",a:["Entreter com ficção","Convencer e orientar o público","Narrar uma aventura","Descrever uma paisagem"],c:1,e:"Campanhas de vacinação buscam informar e incentivar uma atitude de cuidado coletivo."}
+ ]},
+ gramatica:{title:"Castelo da Gramática",skill:"Gramática e ortografia",questions:[
+  {q:"Na frase “Os alunos dedicados estudaram”, a palavra “dedicados” é:",a:["Verbo","Substantivo","Adjetivo","Advérbio"],c:2,e:"“Dedicados” caracteriza o substantivo “alunos”, portanto é um adjetivo."},
+  {q:"Assinale a alternativa com concordância verbal adequada:",a:["A turma chegaram cedo.","Os estudantes participou da atividade.","As professoras organizaram o evento.","Nós vai apresentar o trabalho."],c:2,e:"O sujeito “As professoras” está no plural e concorda com “organizaram”."},
+  {q:"Qual frase apresenta pontuação adequada?",a:["Lucas, trouxe os livros.","Vamos estudar, português matemática e história.","Ao chegar, os estudantes organizaram a sala.","Hoje teremos aula de, literatura."],c:2,e:"A vírgula separa corretamente a oração adverbial deslocada: “Ao chegar”."},
+  {q:"Qual alternativa está escrita corretamente?",a:["Excessão","Concerteza","Privilégio","Beneficiente"],c:2,e:"A grafia correta é “privilégio”. As demais formas corretas seriam exceção, com certeza e beneficente."},
+  {q:"Na frase “Ela chegou muito cedo”, a palavra “muito” intensifica o sentido de:",a:["Ela","Chegou","Cedo","Nenhuma palavra"],c:2,e:"“Muito” é advérbio de intensidade e modifica o advérbio “cedo”."}
+ ]},
+ palavras:{title:"Floresta das Palavras",skill:"Vocabulário e semântica",questions:[
+  {q:"Qual palavra é sinônimo de “essencial”?",a:["Desnecessário","Fundamental","Distante","Raro"],c:1,e:"“Fundamental” tem sentido semelhante a “essencial”: algo indispensável."},
+  {q:"O antônimo de “provisório” é:",a:["Temporário","Passageiro","Definitivo","Breve"],c:2,e:"“Definitivo” expressa uma condição permanente, oposta a provisório."},
+  {q:"Na frase “A notícia caiu como uma bomba”, a expressão indica:",a:["Um acidente literal","Uma notícia de grande impacto","Uma notícia antiga","Uma informação sem importância"],c:1,e:"A expressão é figurada e indica que a notícia causou forte surpresa ou impacto."},
+  {q:"A palavra “infelizmente” foi formada por:",a:["Composição por justaposição","Derivação prefixal e sufixal","Redução","Onomatopeia"],c:1,e:"A palavra reúne o prefixo “in-”, a base “feliz” e o sufixo “-mente”."},
+  {q:"Em “O banco fechou às quatro”, a palavra “banco” pode ter mais de um sentido. Esse fenômeno é chamado de:",a:["Polissemia","Rima","Hipérbole","Pleonasmo"],c:0,e:"Polissemia é a propriedade de uma palavra apresentar diferentes sentidos conforme o contexto."}
+ ]}
+};
+const avatars=["🧙","🧝","🦸","🧑‍🚀","🧚","🧑‍🎓","🦊","🐉"];
+const defaultState={name:"Aventureiro",avatar:"🧙",xp:0,coins:0,played:0,history:[],skill:{},completed:[]};
+let state=loadState(), current=null, qIndex=0, correct=0, locked=false, selectedAvatar=state.avatar;
+function loadState(){try{return {...defaultState,...JSON.parse(localStorage.getItem("portugame-save")||"{}")}}catch(e){return {...defaultState}}}
+function save(){localStorage.setItem("portugame-save",JSON.stringify(state));render()}
+function level(){return Math.floor(state.xp/100)+1}
+function toast(msg){let t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2100)}
+function render(){
+ document.getElementById("playerName").textContent=state.name;document.getElementById("avatar").textContent=state.avatar;
+ document.getElementById("xp").textContent=state.xp;document.getElementById("coins").textContent=state.coins;document.getElementById("played").textContent=state.played;
+ let lv=level(), into=state.xp%100;document.getElementById("levelName").textContent=lv>=5?"Mestre das Palavras":lv>=3?"Guardião do Conhecimento":lv>=2?"Explorador Literário":"Aprendiz das Palavras";
+ document.getElementById("levelLabel").textContent="Nível "+lv;document.getElementById("nextXp").textContent=into+" / 100 XP";document.getElementById("levelBar").style.width=into+"%";
+ Object.keys(missions).forEach(k=>{document.getElementById("done-"+k).textContent=state.completed.includes(k)?"CONCLUÍDO ✓":"JOGAR →"});
+ let skills=document.getElementById("skills");let names=Object.keys(state.skill);skills.innerHTML=names.length?names.map(n=>{let s=state.skill[n],p=s.total?Math.round(s.correct/s.total*100):0;return `<div class="skill"><div class="skill-top"><span>${n}</span><strong>${p}%</strong></div><div class="progress"><i style="width:${p}%"></i></div></div>`}).join(""):'<p class="empty">Complete missões para visualizar seu desempenho em cada competência.</p>';
+ let ach=[];if(state.played>=1)ach.push(["🎮","Primeira aventura","Você iniciou sua jornada."]);if(state.xp>=100)ach.push(["⚡","Centena de XP","Você acumulou 100 pontos de experiência."]);if(state.completed.length>=1)ach.push(["🏅","Missão cumprida","Você concluiu um mundo."]);if(state.completed.length===3)ach.push(["👑","Lenda do PORTUGAME","Você concluiu os três mundos."]);
+ document.getElementById("achievements").innerHTML=ach.length?ach.map(a=>`<div class="achievement"><div class="medal">${a[0]}</div><div><strong>${a[1]}</strong><small>${a[2]}</small></div></div>`).join(""):'<p class="empty">Suas medalhas aparecerão aqui conforme você avançar.</p>';
+}
+function openProfile(){document.getElementById("nameInput").value=state.name==="Aventureiro"?"":state.name;selectedAvatar=state.avatar;document.getElementById("avatarChoices").innerHTML=avatars.map(a=>`<button onclick="chooseAvatar('${a}')" style="font-size:27px;background:${a===selectedAvatar?'#46558a':'#202c52'};border:1px solid #52618f;border-radius:12px;padding:9px">${a}</button>`).join("");document.getElementById("profileModal").classList.add("show")}
+function chooseAvatar(a){selectedAvatar=a;openProfile()}
+function closeProfile(){document.getElementById("profileModal").classList.remove("show")}
+function saveProfile(){let n=document.getElementById("nameInput").value.trim();if(n)state.name=n;state.avatar=selectedAvatar;save();closeProfile();toast("Personagem atualizado!")}
+function startMission(key){current=key;qIndex=0;correct=0;locked=false;document.getElementById("gameModal").classList.add("show");showQuestion()}
+function showQuestion(){
+ let m=missions[current],q=m.questions[qIndex],d=document.getElementById("gameDialog");
+ d.innerHTML=`<div class="dialog-head"><h2>${m.title}</h2><button class="close" onclick="closeGame()">×</button></div><div class="question-meta"><span>QUESTÃO ${qIndex+1} DE ${m.questions.length}</span><span>✦ +10 XP POR ACERTO</span></div><div class="progress"><i style="width:${qIndex/m.questions.length*100}%"></i></div><div class="qtext">${q.q}</div><div class="answers">${q.a.map((a,i)=>`<button class="answer" onclick="answer(${i})">${String.fromCharCode(65+i)}) ${a}</button>`).join("")}</div><div class="feedback" id="feedback"></div><div class="dialog-actions"><span class="muted">Responda com atenção!</span><button class="primary" id="nextBtn" style="display:none" onclick="nextQuestion()">Próxima →</button></div>`;
+}
+function answer(i){
+ if(locked)return;locked=true;let q=missions[current].questions[qIndex],buttons=[...document.querySelectorAll(".answer")],fb=document.getElementById("feedback");
+ buttons.forEach((b,j)=>{b.disabled=true;if(j===q.c)b.classList.add("correct");else if(j===i)b.classList.add("wrong")});
+ let good=i===q.c;if(good){correct++;state.xp+=10;state.coins+=3;fb.innerHTML=`<strong style="color:var(--green)">✓ Resposta correta! +10 XP e +3 moedas</strong>${q.e}`}else{fb.innerHTML=`<strong style="color:var(--red)">✕ Ainda não foi dessa vez.</strong>Resposta correta: <b>${q.a[q.c]}</b><br>${q.e}`}
+ fb.classList.add("show");document.getElementById("nextBtn").style.display="inline-block";save();
+}
+function nextQuestion(){qIndex++;if(qIndex<missions[current].questions.length){locked=false;showQuestion()}else finishMission()}
+function finishMission(){
+ let m=missions[current],total=m.questions.length,pct=Math.round(correct/total*100),first=!state.completed.includes(current);
+ state.played++;if(first){state.completed.push(current);state.xp+=25;state.coins+=10}
+ if(!state.skill[m.skill])state.skill[m.skill]={correct:0,total:0};
+ state.skill[m.skill].correct+=correct;state.skill[m.skill].total+=total;
+ state.history.push({mission:current,correct,total,date:new Date().toLocaleDateString("pt-BR")});
+ save();
+ document.getElementById("gameDialog").innerHTML=`<div class="result"><div class="result-icon">${pct>=80?"🏆":pct>=60?"⭐":"📚"}</div><div class="eyebrow">MISSÃO FINALIZADA</div><h2>${m.title}</h2><div class="result-score">${pct}%</div><p>Você acertou <b>${correct} de ${total}</b> questões.</p><p class="muted">${pct>=80?"Excelente desempenho! Você dominou este desafio.":pct>=60?"Bom trabalho! Continue praticando para evoluir.":"Cada tentativa é uma oportunidade de aprender. Revise as explicações e tente novamente."}</p><div class="panel" style="text-align:left;margin:18px 0"><b>Recompensas desta partida</b><p class="muted">+${correct*10} XP por acertos${first?" • +25 XP por concluir a missão":""} • +${correct*3+(first?10:0)} moedas</p></div><button class="primary" onclick="closeGame()">Voltar ao mapa</button></div>`;
+}
+function closeGame(){document.getElementById("gameModal").classList.remove("show");current=null}
+render();
+</script>
+</body>
+</html>

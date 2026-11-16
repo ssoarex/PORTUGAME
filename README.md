@@ -1,31 +1,28 @@
-# PORTUGAME — versão compacta
+# PORTUGAME
 
-Protótipo RPG educacional de Língua Portuguesa, feito com HTML, CSS e JavaScript puro.
+Jogo educacional de Língua Portuguesa feito com HTML, CSS e JavaScript puro. Não usa backend, banco de dados ou instalação de dependências.
 
-## Como executar no VS Code
-1. Extraia a pasta `PORTUGAME_GitHub`.
-2. Abra a pasta no VS Code.
-3. Abra `index.html` no navegador. Recomendado: extensão **Live Server** no VS Code e clique em **Go Live**.
-4. O jogo funciona sem instalação de Python ou banco de dados.
+## Executar
 
-## Como publicar no GitHub Pages
-1. Entre no GitHub e crie um repositório público chamado `portugame`.
-2. Envie o arquivo `index.html` para a raiz do repositório (o `README.md` é opcional).
-3. Abra **Settings > Pages**.
-4. Em **Build and deployment**, escolha **Deploy from a branch**.
-5. Selecione a branch `main` e a pasta `/ (root)`, depois clique em **Save**.
-6. Aguarde a publicação. O endereço ficará parecido com `https://SEU-USUARIO.github.io/portugame/`.
+Abra `index.html` no navegador ou use a extensão Live Server no VS Code. O projeto usa arquivos JavaScript clássicos, então também funciona ao abrir a página diretamente como arquivo local.
 
-## O que está funcionando
+## Organização
+
+- `index.html`: estrutura e pontos de entrada da interface.
+- `css/styles.css`: apresentação e layout responsivo.
+- `js/app.js`: interação, progresso, perfil e renderização.
+- `js/data/phases.js`: mundos, fases e habilidades.
+- `js/data/questions.js`: perguntas, alternativas, respostas e explicações.
+
+O catálogo tem três mundos, nove fases e 45 questões. Para criar uma fase, inclua seus metadados em `js/data/phases.js` e associe cinco questões com o mesmo identificador em `js/data/questions.js`.
+
+## Recursos
+
 - Perfil local com nome e avatar.
-- Três mundos e 15 questões demonstrativas.
-- Correção automática e explicação pedagógica.
-- XP, moedas, níveis e medalhas.
-- Desempenho por competência.
+- Correção automática com explicações pedagógicas.
+- XP, moedas, níveis e conquistas.
+- Avatares desbloqueáveis com moedas conquistadas ao responder questões.
+- Desempenho por habilidade e progresso por fase.
 - Salvamento com LocalStorage no navegador.
 
-## Limitações desta versão
-- O progresso fica salvo no navegador/dispositivo utilizado. Não há sincronização entre aparelhos ou contas.
-- Não há login real nem painel remoto de professor.
-- As questões são demonstrativas e podem ser ampliadas/editadas no objeto `missions` dentro do `index.html`.
-- Para uma plataforma com vários alunos e professor acompanhando dados centralizados, será necessário adicionar backend e banco de dados.
+O progresso fica salvo apenas no navegador e dispositivo utilizados; não há contas nem sincronização entre aparelhos.
